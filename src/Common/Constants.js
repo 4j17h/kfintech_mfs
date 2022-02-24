@@ -3,4 +3,3 @@ export const FONTS = {
   Medium: 'WorkSans-Medium',
   Bold: 'WorkSans-Bold',
 };
-
