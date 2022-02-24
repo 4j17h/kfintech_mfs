@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useLayoutEffect} from 'react';
+import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {getProf} from '../Redux/Slices/profileSlice';
 import {RootState} from '@reduxjs/toolkit/dist/query/core/apiState';
@@ -13,11 +13,11 @@ export default function Profile({navigation}) {
     (state: RootState) => state.profile,
   );
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     dispatch(getProf(4));
   }, [dispatch]);
 
-  if (processing) {
+  if (processing || !firstName) {
     return <ActivityIndicator size={'large'} color={'black'} />;
   }
 
