@@ -18,21 +18,24 @@ const profSlice = createSlice({
     processing: false,
     isLoggedIn: false,
     id: null,
+    email: null,
+    firstName: null,
+    lastName: null,
+    profilePhoto: null,
   },
-  reducers: {
-    logout: state => {
-      state.isLoggedIn = false;
-      state.token = null;
-    },
-  },
+  reducers: {},
   extraReducers: builder => {
     builder.addCase(getProf.pending, state => {
       state.processing = true;
     });
     builder.addCase(getProf.fulfilled, (state, action) => {
-      state.token = action.payload?.token || null;
       state.processing = false;
-      state.isLoggedIn = action.payload?.token ? true : false;
+      state.isLoggedIn = action.payload?.data ? true : false;
+      state.id = action.payload?.data?.id;
+      state.email = action.payload?.data?.email;
+      state.firstName = action.payload?.data?.first_name;
+      state.lastName = action.payload?.data?.last_name;
+      state.profilePhoto = action.payload?.data?.avatar;
     });
     builder.addCase(getProf.rejected, state => {
       state.processing = false;

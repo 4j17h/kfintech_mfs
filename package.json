@@ -20,6 +20,7 @@
     "moment": "^2.29.1",
     "react": "17.0.2",
     "react-native": "0.67.3",
+    "react-native-fast-image": "github:4j17h/react-native-fast-image",
     "react-native-gesture-handler": "^2.2.0",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-reanimated": "^2.4.1",

@@ -22,6 +22,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '@reduxjs/toolkit/dist/query/core/apiState';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {logout} from './Redux/Slices/authSlice';
+import Profile from './Screens/Profile';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -79,6 +80,23 @@ function NavDrawer({navigation}) {
           headerRight: () => <></>,
           headerLeftContainerStyle: {
             zIndex: 999,
+          },
+        })}
+      />
+      <Drawer.Screen
+        name={'Profile'}
+        component={Profile}
+        options={({route}) => ({
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontSize: dynamicSize(22),
+            fontFamily: FONTS.Bold,
+          },
+          animation: 'none',
+          headerTitleAlign: 'center',
+          headerRight: () => <></>,
+          headerStyle: {
+            backgroundColor: 'black',
           },
         })}
       />

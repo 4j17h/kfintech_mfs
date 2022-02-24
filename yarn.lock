@@ -5983,6 +5983,10 @@ react-native-codegen@^0.0.8:
     jscodeshift "^0.11.0"
     nullthrows "^1.1.1"
 
+"react-native-fast-image@github:4j17h/react-native-fast-image":
+  version "8.1.5"
+  resolved "https://codeload.github.com/4j17h/react-native-fast-image/tar.gz/69c232ba8e585dc3802b5d4d9bbd2dfdd93cf8dd"
+
 react-native-gesture-handler@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.2.0.tgz#a551f9ca33d8766d0a24268f49e0f1b05191b105"
