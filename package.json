@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-navigation/drawer": "^6.3.1",
     "@react-navigation/native": "^6.0.8",
     "@react-navigation/native-stack": "^6.5.0",
     "@reduxjs/toolkit": "^1.7.2",
@@ -21,6 +22,7 @@
     "react-native": "0.67.3",
     "react-native-gesture-handler": "^2.2.0",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
+    "react-native-reanimated": "^2.4.1",
     "react-native-responsive-linechart": "^5.7.1",
     "react-native-safe-area-context": "^3.4.1",
     "react-native-screens": "^3.12.0",
