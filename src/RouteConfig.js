@@ -6,6 +6,9 @@ import {
   initialWindowMetrics,
   SafeAreaProvider,
 } from 'react-native-safe-area-context';
+import Registration from './Screens/Registration';
+import {dynamicSize} from './Utils';
+import {FONTS} from './Common/Constants';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +23,25 @@ function RouteConfig() {
             options={{
               headerShown: false,
             }}
+          />
+          <Stack.Screen
+            name="Registration"
+            component={Registration}
+            options={({navigation, route}) => ({
+              title: route.name.toUpperCase(),
+              headerBackVisible: true,
+              headerStyle: {
+                backgroundColor: 'black',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontSize: dynamicSize(22),
+                fontFamily: FONTS.Bold,
+              },
+              animation: 'none',
+              headerTitleAlign: 'center',
+              headerRight: () => <></>,
+            })}
           />
         </Stack.Navigator>
       </NavigationContainer>

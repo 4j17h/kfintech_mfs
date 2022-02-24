@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActivityIndicator, Image, View} from 'react-native';
+import {ActivityIndicator, Alert, Image, View} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import CTextInputs from '../Components/CTextInputs';
 import CButton from '../Components/CButton';
@@ -10,22 +10,28 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 import {dynamicSize, WinDimen} from '../Utils';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '@reduxjs/toolkit/dist/query/core/apiState';
-import {authUser} from '../Redux/Slices/authSlice';
-import {loginValSchema} from '../Common/FormValidationSchema';
+import {signupValSchema} from '../Common/FormValidationSchema';
+import {signupUser} from '../Redux/Slices/userSignupSlice';
 import {CommonActions} from '@react-navigation/native';
 
-export default function Login({navigation}) {
+export default function Registration({navigation}) {
   const dispatch = useDispatch();
 
-  const {isLoggedIn, token, processing} = useSelector(
-    (state: RootState) => state.auth,
+  const {success, id, token, processing} = useSelector(
+    (state: RootState) => state.signup,
   );
 
-  const userVal = data => {
-    dispatch(authUser(JSON.stringify(data)));
+  const userSignup = data => {
+    if (data?.password !== data?.confirmationPassword) {
+      return Alert.alert('Error', "Passwords doesn't match");
+    }
+
+    const d = JSON.stringify({email: data.email, password: data.password});
+
+    dispatch(signupUser(d));
   };
 
-  if (isLoggedIn) {
+  if (success) {
     navigation.dispatch(CommonActions.navigate('HomeScreen'));
   }
 
@@ -44,28 +50,19 @@ export default function Login({navigation}) {
         <>
           <KeyboardAwareScrollView
             contentContainerStyle={{alignItems: 'center'}}>
-            <Image
-              source={Assets.logo}
-              resizeMode={'contain'}
-              style={{
-                alignSelf: 'center',
-                backgroundColor: 'white',
-                height: dynamicSize(100),
-                width: dynamicSize(250),
-                margin: 50,
-              }}
-            />
             <Formik
               enableReinitialize={true}
-              validationSchema={loginValSchema}
+              validationSchema={signupValSchema}
               initialValues={{
                 email: 'eve.holt@reqres.in',
                 password: 'cityslicka',
+                confirmationPassword: 'cityslicka',
               }}
-              onSubmit={data => userVal(data)}>
+              onSubmit={data => userSignup(data)}>
               {({handleSubmit, errors, touched, isValid}) => (
                 <View
                   style={{
+                    height: WinDimen.height / 1.2,
                     alignItems: 'center',
                     justifyContent: 'center',
                   }}>
@@ -101,6 +98,23 @@ export default function Login({navigation}) {
                     errors={errors}
                     touched={touched}
                   />
+                  <Field
+                    component={CTextInputs.CIconTextInput}
+                    Icon={
+                      <FeatherIcon
+                        style={{marginLeft: 10}}
+                        name="lock"
+                        size={25}
+                        color="gray"
+                      />
+                    }
+                    name="confirmationPassword"
+                    placeholder="Confirmation Password"
+                    spellCheck={false}
+                    secureText={true}
+                    errors={errors}
+                    touched={touched}
+                  />
                   <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
                     <CButton
                       width={dynamicSize(150)}
@@ -108,7 +122,7 @@ export default function Login({navigation}) {
                       buttonBGColor={'darkred'}
                       marginTop={50}
                       textCompProps={{
-                        title: 'LOGIN',
+                        title: 'SIGNUP',
                         bold: true,
                         h3: true,
                         style: {color: 'white'},
@@ -126,25 +140,6 @@ export default function Login({navigation}) {
               )}
             </Formik>
           </KeyboardAwareScrollView>
-          <View
-            style={{
-              top: WinDimen.height / 4.2,
-              alignSelf: 'center',
-            }}>
-            <CButton
-              onPress={() =>
-                navigation.dispatch(CommonActions.navigate('Registration'))
-              }
-              width={WinDimen.width}
-              buttonBGColor={'white'}
-              textCompProps={{
-                title: 'CREATE NEW ACCOUNT',
-                bold: true,
-                h3: true,
-                style: {color: 'black'},
-              }}
-            />
-          </View>
         </>
       </SafeAreaView>
     </>
