@@ -9,6 +9,9 @@ import {
 import Registration from './Screens/Registration';
 import {dynamicSize} from './Utils';
 import {FONTS} from './Common/Constants';
+import HomeScreen from './Screens/HomeScreen';
+import {Assets} from './Common/Assets';
+import {Image} from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,7 +19,7 @@ function RouteConfig() {
   return (
     <SafeAreaProvider initialMetrics={initialWindowMetrics}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
+        <Stack.Navigator initialRouteName="HomeScreen">
           <Stack.Screen
             name="Login"
             component={Login}
@@ -30,6 +33,35 @@ function RouteConfig() {
             options={({navigation, route}) => ({
               title: route.name.toUpperCase(),
               headerBackVisible: true,
+              headerStyle: {
+                backgroundColor: 'black',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontSize: dynamicSize(22),
+                fontFamily: FONTS.Bold,
+              },
+              animation: 'none',
+              headerTitleAlign: 'center',
+              headerRight: () => <></>,
+            })}
+          />
+          <Stack.Screen
+            name="HomeScreen"
+            component={HomeScreen}
+            options={({navigation, route}) => ({
+              headerTitle: () => (
+                <Image
+                  source={Assets.brandLogo}
+                  style={{
+                    height: dynamicSize(40),
+                    flex: 1,
+                    left: -15,
+                  }}
+                  resizeMode={'contain'}
+                />
+              ),
+              headerBackVisible: false,
               headerStyle: {
                 backgroundColor: 'black',
               },

@@ -1,8 +1,10 @@
 import * as React from 'react';
 import RouteConfig from './src/RouteConfig';
-import {StatusBar} from 'react-native';
+import {LogBox, StatusBar} from 'react-native';
 import {store} from './src/Redux/Store';
 import {Provider} from 'react-redux';
+
+LogBox.ignoreAllLogs();
 
 function App() {
   return (

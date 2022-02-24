@@ -1,13 +1,12 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import {login} from '../../Common/ApiConfig';
+import {userProfile} from '../../Common/ApiConfig';
 
-export const getProf = createAsyncThunk('user/getProf', async body => {
-  const response = await fetch(login, {
-    method: 'POST',
+export const getProf = createAsyncThunk('user/getProf', async id => {
+  const response = await fetch(userProfile + id, {
+    method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: body,
   });
   const respData = await response.json();
   return respData;
