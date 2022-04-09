@@ -17,7 +17,7 @@
     "axios": "^0.26.0",
     "d3": "^7.3.0",
     "formik": "^2.2.9",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "react": "17.0.2",
     "react-native": "0.67.3",
     "react-native-fast-image": "github:4j17h/react-native-fast-image",
