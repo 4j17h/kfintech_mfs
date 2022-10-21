@@ -23,7 +23,7 @@
     "react-native-fast-image": "github:4j17h/react-native-fast-image",
     "react-native-gesture-handler": "^2.2.0",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
-    "react-native-reanimated": "^2.4.1",
+    "react-native-reanimated": "^2.10.0",
     "react-native-responsive-linechart": "^5.7.1",
     "react-native-safe-area-context": "^3.4.1",
     "react-native-screens": "^3.12.0",
